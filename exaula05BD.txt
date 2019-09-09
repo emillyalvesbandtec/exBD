@@ -1,0 +1,37 @@
+create database bdAtleta;
+use bdAtleta;
+
+create table tbAtleta(
+id_atleta int primary key auto_increment,
+nome_atleta varchar(40),
+esporte varchar(40),
+medalhas int
+);
+
+create table tbPais(
+id_pais int primary key auto_increment,
+nome_pais varchar(40),
+capital varchar (40)
+);
+
+alter table tbAtleta add column fk_id_pais int;
+
+insert into tbPais values (null,'Brasil','Brasília'),
+(null,'Canada','Ottawa'),
+(null,'Japao','Tóquio');
+
+insert into tbAtleta values (null,'Emilly','Basquete',15,1),
+(null,'Leonardo Afonso','Natação',3,2),
+(null,'Rafa P.','Muay thai',79,3);
+
+select tbAtleta. * ,tbPais.nome_pais from tbAtleta , tbPais where fk_id_pais = id_pais;
+
+select tbAtleta. *, tbPais. * from tbAtleta , tbPais where id_pais = 1 and fk_id_pais = 1;
+
+
+
+
+
+
+
+
