@@ -28,6 +28,8 @@ select tbAtleta. * ,tbPais.nome_pais from tbAtleta , tbPais where fk_id_pais = i
 
 select tbAtleta. *, tbPais. * from tbAtleta , tbPais where id_pais = 1 and fk_id_pais = 1;
 
+select tbMusica.* , tbAlbum. * from tbMusica, tbAlbum where fk_album = id_album and gravadora = 'emi' and fk_album = 1;
+
 
 
 
