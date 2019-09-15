@@ -1,0 +1,45 @@
+create database adsb
+use adsb;
+
+create table Atleta (
+id_atleta int primary key auto_increment,
+nome_atleta varchar(30),
+esporte varchar (30),
+medalhas int
+);
+
+insert into Atleta values (null,'Emilly S.','Basquete',25), 
+                          (null,'Michael Phelps','Natação',28),
+                          (null,'Neymar Jr.','Futebol',15),
+                          (null,'Usain Bolt','Corrida',8),
+                          (null,'Giba','Volêi',10);
+
+create table Pais (
+id_pais int primary key auto_increment,
+nome_pais varchar (30),
+capital varchar (30)
+) auto_increment = 100;
+
+insert into Pais values (null,'Brasil','Brasília'),
+                        (null,'EUA','Washington, D.C.'),
+                        (null,'Jamaica','Kingston');
+
+alter table Atleta add column fk_pais int;
+
+alter table Atleta add foreign key (fk_pais) references Pais(id_pais);
+
+update Atleta set fk_pais = 101 where id_atleta in (1,3,5);
+update Atleta set fk_pais = 102 where id_atleta = 2;
+update Atleta set fk_pais = 103 where id_atleta = 4;
+
+select * from Atleta as a, Pais as p where a.fk_pais = p.id_pais;
+
+select * from Atleta as a, Pais as p where a.fk_pais = p.id_pais and nome_pais = 'Brasil';
+
+
+
+
+
+
+
+
