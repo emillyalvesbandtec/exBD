@@ -1,0 +1,56 @@
+create database adsbNovo;
+use adsbNovo;
+
+create table Empresa(
+id_emp int primary key auto_incremnet,
+nome_emp varchar (30),
+representante varchar (30)
+);
+
+insert into Empresa values (null,'Valid','Mirian'),
+                           (null,'Totvs','Rafael'),
+                           (null,'Easynvest','Vitor'),
+                           (null,'C6 Bank','Gerson');
+
+
+create table InstituicaoEnsino (
+id_ins int primary key auto_increment,
+nome varchar (30),
+bairro varchar (30)
+) auto_increment = 100;
+
+insert into InstituicaoEnsino values (null,'Escopo','Osasco'),
+                                     (null,'Objetivo','Carapicuiba'),
+                                     (null,'Aplicação','Osasco'),
+                                     (null,'Papa mike','Vila P.'),
+                                     (null,'Escopo','São M.');
+
+create table Aluno(
+ra int primary key auto_increment,
+nome_aluno varchar (30),
+bairro varchar (30),
+fk_emp int,
+foreign key (fk_emp) references Empresa(id_emp),
+fk_ins int,
+foreign key (fk_ins) references  InstituicaoEnsino(id_ins)
+) auto_incremnet = 1000;
+
+insert into Aluno values (null,'Emilly','Pq.Sampaio',4,100),
+                         (null,'Leonardo','Vila P.',1,101),
+                         (null,'Pedro','São M.',2,102),
+                         (null,'Brenno','Villa Crett',3,103),
+                         (null,'Marilandia','Vila Dirce',4,104);
+
+select * from Empresa as e, InstituicaoEnsino as i, Aluno as a where a.fk_emp = e.id_emp and a.fk_ins = i.id_ins;
+
+select * from Empresa as e, InstituicaoEnsino as i, Aluno as a where a.fk_emp = e.id_emp and a.fk_ins = i.id_ins and nome_emp = '6C Bank';
+
+select * from Empresa as e, InstituicaoEnsino as i, Aluno as a where a.fk_emp = e.id_emp and a.fk_ins = i.id_ins and i.nome = 'Escopo';
+
+
+
+
+
+
+ 
+
