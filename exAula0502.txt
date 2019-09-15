@@ -1,0 +1,42 @@
+create database bdMusica;
+use bdMusica;
+
+create table Musica(
+id_musc int primary key auto_increment,
+nome_musc varchar (40),
+artista varchar (40),
+genero varchar (40)
+);
+
+insert into Musica values (null,'Vida loka part.2','Mano B.','Rap',),
+                          (null,'Infiel','Marilia M.','Sertanejo',),
+                          (null,'Pintinho Amarelinho','Galinha pintadinha','Infantil',),
+                          (null,'Uma nora pra cada dia','kevinho','Funk'),
+                          (null,'Wind of change','Scorpions','Rock');
+create table Album (
+id_album int primary key auto_incremnet,
+nome_album varchar (10),
+nome_grav varchar (20)
+) auto_increment = 100;
+
+insert into Album values (null,'Sobrevivendo ao inferno','Emi'),
+                         (null,'Realidade','Cult Records'),
+                         (null,'Wike up',' Dischord');
+
+alter table Musica add column fk_album int;
+
+alter table Musica add foreign key (fk_album) references Album(id_album);
+
+update Musica set fk_album = 100 where id_musc 1;
+update Musica set fk_album = 101 where id_music in (3,4);
+update Musica set fk_album = 102 where id_music in (2,5);
+
+select * from Musica as m, Album as a where m.fk_album = a.id_album;
+
+select * from Musica as m, Album as a where m.fk_albom = a.id_album and nome_grav = 'Emi';
+
+
+
+
+ 
+
