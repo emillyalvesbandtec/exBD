@@ -41,12 +41,12 @@ insert into engenheiro values (null,'Franscisco',01,'3800','m'),
                                 (null,'Marcos',05,'6000','n'),
                                 (null,'Jaque',06,'6000','f');
                                 
-insert into dependente values (null,'Marcelina','2001-08-23','filho'),
-								(null,'Joao','2005-02-09','filho'),
-                                (null,'Carlos','1975-08-10','conjuge'),
-                                (null,'Andre','1983-08-11','conjuge'),
-                                (null,'Gabriel','2001-02-16','comjuge'),
-                                (null,'Breno','1965-04-29','filho');
+insert into dependente values (null,'Marcelina','2001-08-23','filho',1),
+								(null,'Joao','2005-02-09','filho',2),
+                                (null,'Carlos','1975-08-10','conjuge',3),
+                                (null,'Andre','1983-08-11','conjuge',4),
+                                (null,'Gabriel','2001-02-16','comjuge',1),
+                                (null,'Breno','1965-04-29','filho,',6);
 
 insert into obra values (null,'obra1','Pq.Sampaio'),
 						(null,'obra2','Vila P.'),
@@ -76,21 +76,44 @@ select * from obra;
 
 select * from dependente;
 
-select * from engenheiro as e join dependente as d on e.id_engenheiro = d.fk_eng;
+select * from engenheiro as e 
+	join dependente as d 
+		on e.id_engenheiro = d.fk_eng;
 
-select * from engenheiro as e join dependente as d on e.id_engenheiro = d.fk_eng where nome_engenheiro = 'Francisco';
+select * from engenheiro as e 
+	join dependente as d on e.id_engenheiro = d.fk_eng 
+		where nome_engenheiro = 'Lucas';
 
-select * from engenheiro as a join dependente as d on e.id_engenheiro = d.fk_eng where d.tipo = 'filho';
+select * from engenheiro as e 
+	join dependente as d on e.id_engenheiro = d.fk_eng 
+		where d.tipo = 'filho';
 
-select * from engenheiro as a join obra as o join trabalha as t on e.id_engenheiro = t.fk_eng on o.id_obra = t.fk_obra;
+select * from engenheiro as e 
+	join trabalha as t on e.id_engenheiro = t.fk_eng 
+		join obra as o on o.id_obra = t.fk_obra;
 
-select * from engenheiro as a join obra as o join trabalha as t on e.id_engenheiro = t.fk_eng on o.id_obra = t.fk_obra where o.nome = 'obra2';
+select * from engenheiro as e join trabalha as t 
+	on e.id_engenheiro = t.fk_eng 
+		join obra as o on o.id_obra = t.fk_obra 
+			where o.nome = 'obra2';
 
-select * from engenheiro as a join obra as o join trabalha as t join dependente as d on e.id_engenheiro = t.fk_eng on o.id_obra = t.fk_obra on d.fk_eng = e.id_engenheiro;
+select * from engenheiro as e 
+	join trabalha as t 
+		on e.id_engenheiro = t.fk_eng 
+			join dependente as d 
+				on e.id_engenheiro = d.fk_eng
+					join obra as o
+						on o.id_obra = t.fk_obra;
 
-select * from engenheiro as e join dependente as d join obra as o join trabalha as t on e.id_engenheiro = d.fk_eng on o.id_obra = t.fk_obra on t.fk_eng = e.id_engenheiro where nome_engenheiro = 'Jaque';
+select * from engenheiro as e	
+	join dependente as d
+		on e.id_engenheiro = d.fk_eng
+			join trabalha as t
+				on e.id_engenheiro = t.fk_eng
+					join obra as o
+						on o.id_obra = t.fk_obra
+							where nome_engenheiro = 'Jaque';
 
-select * from engenheiro as e join dependente as d join obra as o join trabalha as t on e.id_engenheiro = d.fk_eng on o.id_obra = t.fk_obra on t.fk_eng = e.id_engenheiro where nome_engenheiro = 'obra3';
 
 select sum(salario) as 'Soma dos salarios' from engenheiro;
 
@@ -105,3 +128,5 @@ select distinct sum(salario) from engenheiro;
 
 
 
+
+   
